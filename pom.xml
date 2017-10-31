@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    
+    <groupId>com.github.phillip-kruger</groupId>
+    <artifactId>message-example</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+    
+    <name>message-example</name>
+    <url>https://github.com/phillip-kruger/message-example</url>
+    <description>Example application to demonstrate MicroProfile</description>
+    
+    <licenses>
+        <license>
+            <name>Apache License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+    
+    <scm>
+        <connection>scm:git:https://github.com/phillip-kruger/notes-example.git</connection>
+        <url>https://github.com/phillip-kruger/notes-example</url>
+    </scm>
+
+    <distributionManagement>
+        <site>
+            <id>wiki</id>
+            <url>https://github.com/phillip-kruger/message-example/wiki</url>
+        </site>
+        
+        <snapshotRepository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+        </snapshotRepository>
+        <repository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </repository>
+    
+    </distributionManagement>
+
+    <developers>
+        <developer>
+            <name>Phillip Kruger</name>
+            <email>phillip.kruger@phillip-kruger.com</email>
+            <organizationUrl>http://www.phillip-kruger.com</organizationUrl>
+        </developer>
+    </developers>
+    
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <!-- Java version -->
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        
+        <!-- JEE Platform -->        
+        <jee.version>8.0</jee.version>
+        <microProfile.version>1.2</microProfile.version>
+        <lombok.version>1.16.18</lombok.version>
+       
+        <failOnMissingWebXml>false</failOnMissingWebXml>
+       
+    </properties>
+    
+    <dependencies>
+        <!-- Jave ee -->
+        <dependency>
+            <groupId>javax</groupId>
+            <artifactId>javaee-api</artifactId>
+            <version>${jee.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <!-- MicroProfile -->
+        <dependency>
+            <groupId>org.eclipse.microprofile</groupId>
+            <artifactId>microprofile</artifactId>
+            <version>${microProfile.version}</version>
+            <type>pom</type>
+            <scope>provided</scope>
+        </dependency>
+        <!-- Lombok -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>${lombok.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        
+        <!-- Test related -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.cxf</groupId>
+            <artifactId>cxf-rt-rs-client</artifactId>
+            <version>3.2.0</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.glassfish</groupId>
+            <artifactId>javax.json</artifactId>
+            <version>1.1</version>
+            <scope>test</scope>
+        </dependency>
+        
+    </dependencies>
+    
+    <build>
+        <finalName>${project.artifactId}</finalName>
+    </build>
+    
+    <modules>
+        <module>message-application</module>
+        <module>logfile-writer</module>
+    </modules>
+</project>

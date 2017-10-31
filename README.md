@@ -1,2 +1,2 @@
 # message-example
-Simple example project to demonstate MicroProfile
+Simple example project to demonstrate MicroProfile 1.2
