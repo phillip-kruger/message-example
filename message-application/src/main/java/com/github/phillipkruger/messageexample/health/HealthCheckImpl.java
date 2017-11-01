@@ -15,7 +15,7 @@ import org.eclipse.microprofile.health.HealthCheckResponse;
 public class HealthCheckImpl implements HealthCheck {
 
     @Inject
-    @ConfigProperty(name = "provider", defaultValue = "system")
+    @ConfigProperty(name = "providers")
     private String provider;
     
     @Override

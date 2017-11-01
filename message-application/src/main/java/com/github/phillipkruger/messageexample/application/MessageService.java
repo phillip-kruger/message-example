@@ -1,5 +1,6 @@
 package com.github.phillipkruger.messageexample.application;
 
+import com.github.phillipkruger.microprofileextentions.cdifilter.FilterLiteral;
 import javax.enterprise.context.RequestScoped;
 import javax.enterprise.event.Event;
 import javax.inject.Inject;
@@ -31,9 +32,8 @@ public class MessageService {
     public void sendMessage(String message){
         
         providers.stream().map((provider) -> ((JsonString)provider).getString()).forEachOrdered((name) -> {
-            broadcaster.select(new QualifiedLiteral(name)).fire(new Message(message));
+            broadcaster.select(new FilterLiteral(name)).fire(new Message(message));
         });
-
     }
     
 }
