@@ -2,9 +2,7 @@ package com.github.phillipkruger.messageexample.providers;
 
 import com.github.phillipkruger.messageexample.application.Message;
 import com.github.phillipkruger.microprofileextentions.cdifilter.Filter;
-import java.text.SimpleDateFormat;
 import java.time.LocalTime;
-import java.util.Date;
 import java.util.logging.Level;
 import javax.enterprise.context.RequestScoped;
 import javax.enterprise.event.Observes;
