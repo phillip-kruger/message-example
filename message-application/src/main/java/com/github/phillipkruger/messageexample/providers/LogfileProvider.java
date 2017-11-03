@@ -2,6 +2,10 @@ package com.github.phillipkruger.messageexample.providers;
 
 import com.github.phillipkruger.messageexample.application.Message;
 import com.github.phillipkruger.microprofileextentions.cdifilter.Filter;
+import java.text.SimpleDateFormat;
+import java.time.LocalTime;
+import java.util.Date;
+import java.util.logging.Level;
 import javax.enterprise.context.RequestScoped;
 import javax.enterprise.event.Observes;
 import javax.inject.Inject;
@@ -31,9 +35,11 @@ public class LogfileProvider {
     
     public void receiveMessage(@Observes @Filter(forClass = LogfileProvider.class) Message message){
         String url = String.format(URL_PATTERN, logfileScheme,logfileHost,logfilePort);
-        //restCaller.post(url, Entity.text(message.getBody()), "SEVERE");
-        restCaller.postAsync(url, Entity.text(message.getBody()), "SEVERE");
         
+        String timedMessage = "[" + LocalTime.now() + "] " + message.getBody();
+        
+        //restCaller.post(url, Entity.text(message.getBody()), "SEVERE");
+        restCaller.postAsync(url, Entity.text(timedMessage), Level.SEVERE.getName());
     }
     
     private static final String URL_PATTERN = "%s://%s:%d/logfile-writer/api";
