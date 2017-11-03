@@ -5,6 +5,7 @@ import com.github.phillipkruger.microprofileextentions.cdifilter.Filter;
 import javax.enterprise.context.RequestScoped;
 import javax.enterprise.event.Observes;
 import javax.inject.Inject;
+import javax.ws.rs.client.Entity;
 import lombok.extern.java.Log;
 import org.eclipse.microprofile.config.inject.ConfigProperty;
 
@@ -30,8 +31,8 @@ public class LogfileProvider {
     
     public void receiveMessage(@Observes @Filter(forClass = LogfileProvider.class) Message message){
         String url = String.format(URL_PATTERN, logfileScheme,logfileHost,logfilePort);
-        //restCaller.post(url, null, message.getBody());
-        restCaller.postAsync(url, null, message.getBody());
+        //restCaller.post(url, Entity.text(message.getBody()), "SEVERE");
+        restCaller.postAsync(url, Entity.text(message.getBody()), "SEVERE");
         
     }
     

@@ -1,7 +1,6 @@
 package com.github.phillipkruger.messageexample.providers;
 
 import java.time.temporal.ChronoUnit;
-import java.util.Queue;
 import java.util.concurrent.Future;
 import javax.ejb.AsyncResult;
 import javax.ejb.Asynchronous;
@@ -17,8 +16,6 @@ import lombok.extern.java.Log;
 import org.eclipse.microprofile.faulttolerance.Fallback;
 import org.eclipse.microprofile.faulttolerance.Retry;
 
-
-// 
 /**
  * Making REST call to external providers
  * @author Phillip Kruger (phillip.kruger@phillip-kruger.com)
