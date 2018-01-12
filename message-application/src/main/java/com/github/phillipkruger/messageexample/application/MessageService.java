@@ -27,12 +27,17 @@ public class MessageService {
     private JsonArray providers;
     
     @Inject
+    @ConfigProperty(name = "append")
+    private String append;
+    
+    @Inject
     private Event<Message> broadcaster;
     
     public void sendMessage(String message){
-        
+        if(append!=null && !append.isEmpty())message = append + message;
+        final String finalMessage = message;
         providers.stream().map((provider) -> ((JsonString)provider).getString()).forEachOrdered((name) -> {
-            broadcaster.select(new FilterLiteral(name)).fire(new Message(message));
+            broadcaster.select(new FilterLiteral(name)).fire(new Message(finalMessage));
         });
     }
     
