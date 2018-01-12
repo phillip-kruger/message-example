@@ -2,6 +2,8 @@ package com.github.phillipkruger.messageexample.providers;
 
 import java.time.temporal.ChronoUnit;
 import java.util.concurrent.Future;
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 import javax.ejb.AsyncResult;
 import javax.ejb.Asynchronous;
 import javax.ejb.Stateless;
@@ -13,6 +15,7 @@ import javax.ws.rs.client.Invocation;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.Response;
 import lombok.extern.java.Log;
+import org.eclipse.microprofile.faulttolerance.Bulkhead;
 import org.eclipse.microprofile.faulttolerance.Fallback;
 import org.eclipse.microprofile.faulttolerance.Retry;
 
@@ -30,10 +33,23 @@ public class RestCaller {
     @Inject
     private PostQueue postQueue;
     
+    private Client client;
+    
+    @PostConstruct
+    public void init(){
+        this.client = ClientBuilder.newClient();   
+    }
+    
+    @PreDestroy
+    public void destroy(){
+        this.client.close();
+        this.client = null;
+    }
+    
     @Fallback(fallbackMethod = "fallbackPost")
+    //@Bulkhead(value = 2, waitingTaskQueue = 1)
     public Response post(String url,Entity<?> payload,String... path){
         
-        Client client = ClientBuilder.newClient();
         WebTarget target = client.target(url);
         for(String p:path){
             target = target.path(p);

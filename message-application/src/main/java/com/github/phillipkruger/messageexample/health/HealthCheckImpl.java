@@ -2,6 +2,7 @@ package com.github.phillipkruger.messageexample.health;
 
 import javax.enterprise.context.Dependent;
 import javax.inject.Inject;
+import javax.json.JsonArray;
 import org.eclipse.microprofile.config.inject.ConfigProperty;
 import org.eclipse.microprofile.health.Health;
 import org.eclipse.microprofile.health.HealthCheck;
@@ -16,12 +17,12 @@ public class HealthCheckImpl implements HealthCheck {
 
     @Inject
     @ConfigProperty(name = "providers")
-    private String provider;
+    private JsonArray providers;
     
     @Override
     public HealthCheckResponse call() {
         return HealthCheckResponse.builder().name("MessageService")
-            .withData("provider", provider)
+            .withData("provider", providers.toString())
             .state(true)
             .build();
     }

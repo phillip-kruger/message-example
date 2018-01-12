@@ -20,7 +20,7 @@ import lombok.extern.java.Log;
  */
 @Log
 @Path("/message")
-@Produces({MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML}) @Consumes({MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML})
+//@Produces({MediaType.TEXT_PLAIN,MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML}) @Consumes({MediaType.TEXT_PLAIN,MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML})
 public class MessageApi {
     
     @Inject 
@@ -28,6 +28,7 @@ public class MessageApi {
     
     @POST
     @Path("/{message}")
+    @Consumes(MediaType.TEXT_PLAIN)
     public void sendMessage(@NotNull @PathParam("message") String message) {
         messageService.sendMessage(message);
     }

@@ -2,6 +2,12 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     
+    <parent>
+        <groupId>com.github.phillip-kruger</groupId>
+        <artifactId>javaee-servers-parent</artifactId>
+        <version>javaee-7-v2-SNAPSHOT</version>
+    </parent>
+    
     <groupId>com.github.phillip-kruger</groupId>
     <artifactId>message-example</artifactId>
     <version>1.0.0-SNAPSHOT</version>
@@ -56,12 +62,15 @@
         <maven.compiler.target>1.8</maven.compiler.target>
         
         <!-- JEE Platform -->        
-        <jee.version>7.0</jee.version>
+        <javaee.version>7.0</javaee.version>
         <microProfile.version>1.2</microProfile.version>
         <lombok.version>1.16.18</lombok.version>
        
         <failOnMissingWebXml>false</failOnMissingWebXml>
        
+        <!-- Logging settings -->
+        <log.level>FINEST</log.level> 
+        <log.name>com.github.phillipkruger</log.name>
     </properties>
     
     <dependencies>
@@ -69,7 +78,7 @@
         <dependency>
             <groupId>javax</groupId>
             <artifactId>javaee-api</artifactId>
-            <version>${jee.version}</version>
+            <version>${javaee.version}</version>
             <scope>provided</scope>
         </dependency>
         <!-- MicroProfile -->
@@ -87,12 +96,18 @@
             <version>${lombok.version}</version>
             <scope>provided</scope>
         </dependency>
-        
+
         <!-- Test related -->
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>4.12</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>javax.ws.rs</groupId>
+            <artifactId>javax.ws.rs-api</artifactId>
+            <version>2.1</version>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -107,7 +122,7 @@
             <version>1.1</version>
             <scope>test</scope>
         </dependency>
-        
+    
     </dependencies>
     
     <build>
