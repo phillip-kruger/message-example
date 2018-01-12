@@ -24,6 +24,7 @@ public class LogFileWriterApi {
     
     @POST
     @Path("{level}")
+    @Consumes(MediaType.TEXT_PLAIN)
     public void log(@NotNull @PathParam("level")String level, String message) {
         Level l = Level.parse(level);
         log.log(l, ">>>>>>>>> {0}", message);
