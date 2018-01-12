@@ -17,6 +17,7 @@
     <properties>
         <http.port>8081</http.port>
         <https.port>9444</https.port>
+        <debug.port>5006</debug.port>
     </properties>
     
 </project>
